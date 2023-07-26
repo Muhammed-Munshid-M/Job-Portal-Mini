@@ -1,8 +1,10 @@
 const express = require('express');
-const adminController = require('../controller/admin-controller');
+const userController = require('../controller/user-controller');
 const router = express.Router();
 
 // GET METHODS
 
-router.post('/',adminController.doLogin)
-router.post('/signUp',adminController.signUp)
+router.post('/',userController.doLogin)
+// router.post('/signUp',userController.signUp)
+
+module.exports = router
