@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const questionSchema = new mongoose.Schema({
+    jobId: {
+        type: Number,
+        required: true
+    },
     questionTitle: {
         type: String,
         required: true
@@ -13,7 +17,13 @@ const questionSchema = new mongoose.Schema({
     },
     isMandatory: {
         type: Boolean
+    },
+    selectItem: {
+        type: String
+    },
+    minExprnce: {
+        type: Number
     }
 })
 
-module.exports = questionModel = mongoose.model('questions',questionSchema)
+module.exports = questionModel = mongoose.model('questions', questionSchema)

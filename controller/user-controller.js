@@ -1,3 +1,6 @@
+const candidateModel = require("../model/candidateModel");
+const jobModel = require("../model/jobModel");
+
 module.exports = {
     viewJobs: (req, res) => {
         try {
@@ -8,12 +11,20 @@ module.exports = {
         }
     },
 
-    contactInfo: (req, res) => {
+    contactInfo: async (req, res) => {
         try {
-            const { name, age, answer1,answer2, answer3 } = req.body
-            
+            const { name, age, answers, shortListed } = req.body
+            const candidate = new candidateModel({
+                Name:name,
+                Age:age,
+                answers:answers,
+                shortListed:shortListed
+            })
+            candidate.save()
+            res.status(200).send({ success: true, message: 'Your Job details added' })
         } catch (error) {
-
+            console.log(error);
+            res.status(500).send({ error: true })
         }
     }
 }

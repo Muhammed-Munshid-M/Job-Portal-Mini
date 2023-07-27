@@ -1,6 +1,7 @@
 const adminModel = require("../model/adminModel");
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const questionModel = require("../model/questionModel");
 
 module.exports = {
     doLogin: async (req, res) => {
@@ -54,10 +55,20 @@ module.exports = {
         }
     },
 
-    jobForm: (req, res) => {
+    jobForm: async(req, res) => {
         try {
-            const { questionTitle, subTitle, answerType, isMandatory,dropDown, min, jobId } = req.body
-            
+            const { questionTitle, subTitle, answerType, isMandatory, dropDown, minExp, jobId } = req.body
+            const questions = new questionModel({
+                jobId: jobId,
+                questionTitle: questionTitle,
+                subTitle: subTitle,
+                answerType: answerType,
+                isMandatory: isMandatory,
+                selectItem: dropDown,
+                minExprnce: minExp
+            })
+            await questions.save()
+            res.status(200).send({ success: true, message: 'Your jobForm verified' })
         } catch (error) {
             console.log(error);
             res.status(500).send({ error: true })
