@@ -12,12 +12,10 @@ module.exports = {
                 if (!isMatchPswrd) {
                     res.status(200).send({ message: "Incorrect Password", noMatch: true })
                 } else {
-                    const jwtSecret = 'JOBPORTAL'
-                    const token = jwt.sign({ id: admin._id }, jwtSecret, {
+                    const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, {
                         expiresIn: '1d'
                     })
-                    console.log(token);
-                    res.status(200).send({ message: "Login Successfull", success: true, data: token })
+                    res.status(200).send({ message: "Login Successfull", success: true, token: token })
                 }
             } else {
                 res.status(200).send({ message: "Incorrect Email or Password", noUser: true })
@@ -55,5 +53,15 @@ module.exports = {
             res.status(500).send({ error: true })
         }
     },
+
+    jobForm: (req, res) => {
+        try {
+            const { questionTitle, subTitle, answerType, isMandatory,dropDown, min, jobId } = req.body
+            
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({ error: true })
+        }
+    }
 
 }

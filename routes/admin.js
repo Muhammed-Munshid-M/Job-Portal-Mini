@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post('/',adminController.doLogin)
 router.post('/signUp',adminController.signUp)
+router.post('/job-form',adminController.jobForm)
 
 module.exports = router

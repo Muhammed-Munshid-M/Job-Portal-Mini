@@ -2,6 +2,7 @@ const express=require('express');
 // const logger=require('morgan');
 const path=require('path');
 const ejs=require('ejs');
+const dotenv = require('dotenv')
 
 // const cookieParser=require('cookie-parser');
 // const createError=require('http-errors');
@@ -12,6 +13,8 @@ const bodyParser = require('body-parser')
 //Routes
 const userRouter=require('./routes/user');
 const adminRouter=require('./routes/admin');
+
+dotenv.config()
 
 const app=express();
 
