@@ -6,6 +6,7 @@ const candidateModel = require("../model/candidateModel");
 const jobModel = require("../model/jobModel");
 
 module.exports = {
+    
     doLogin: async (req, res) => {
         try {
             const { email, password } = req.body
@@ -228,7 +229,6 @@ module.exports = {
         }
     },
 
-
     deleteJobById: async (req, res) => {
         try {
             const id = req.params.id
@@ -239,6 +239,5 @@ module.exports = {
             res.status(500).send({ error: true })
         }
     }
-
 
 }

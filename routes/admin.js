@@ -18,8 +18,12 @@ router.post('/signUp',adminController.signUp)
 router.post('/add-job/:id',adminController.addJob)
 router.post('/add-form',adminController.addForm)
 
+// PUT METHODS
+
 router.put('/edit-job/:id',adminController.editJob)
 router.put('/edit-form/:id',adminController.editForm)
+
+// DELETE METHODS
 
 router.delete('/delete-candidates/:id',adminController.deleteCandidateById)
 router.delete('/delete-job/:id',adminController.deleteJobById)
