@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
+const Objectid = mongoose.Types.ObjectId
 
 const questionSchema = new mongoose.Schema({
     jobId: {
-        type: Number,
-        required: true
+        type: Number
     },
     questionTitle: {
         type: String,

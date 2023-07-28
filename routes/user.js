@@ -7,8 +7,8 @@ const router = express.Router();
 router.get('/jobs',userController.viewJobs)
 router.get('/jobs/:id',userController.viewJobById)
 
-router.post('/contact-info',userController.contactInfo)
+router.post('/contact-info/:id',userController.contactInfo)
 
-router.put('/contact-info/:id',userController.contactInfoUpdate)
+router.put('/contact-info-update/:id',userController.contactInfoUpdate)
 
 module.exports = router

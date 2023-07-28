@@ -7,7 +7,7 @@ const jobSchema = new mongoose.Schema({
         ref:'admin'
     },
     job_id: {
-        type: Objectid
+        type: Number
     },
     creationDate: {
         type: Date

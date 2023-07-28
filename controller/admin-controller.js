@@ -131,44 +131,82 @@ module.exports = {
         }
     },
 
-    addJob: async (req, res) => {
+    editForm: async (req, res) => {
         try {
-            const adminId = req.query.adminId
-            const jobId = req.query.jobId
-            const { isActive, lastDate } = req.body
-            const candidates = await candidateModel.find({ jobId: jobId })
-            const jobs = new jobModel({
-                job_id: jobId,
-                creationDate: new Date(),
-                isActive: isActive,
-                lastDate: new Date(lastDate),
-                totalCandidates: candidates,
-                addedBy: adminId,
-            })
-            await jobs.save()
-            const result = await jobModel.aggregate([
-                {
-                    $lookup: {
-                        from: "questions",
-                        localField: "jobId",
-                        foreignField: "job_id",
-                        as: "questionsArray",
-                    },
-                }
-            ])
-            await jobModel.updateOne({ job_id: jobId }, {
+            const id = req.params.id
+            const { jobId, questionTitle } = req.body
+            await questionModel.findOneAndUpdate({ _id: id }, {
                 $set: {
-                    questionsArray: result
+                    jobId: jobId,
+                    questionTitle: questionTitle
                 }
             })
-            res.status(200).send({ success: true, jobs: result })
+            res.status(200).send({ success: true, message: 'Your jobForm updated' })
         } catch (error) {
             console.log(error);
             res.status(500).send({ error: true })
         }
     },
 
-    getJobById: async (req, res) => {
+    deleteFormByJobId: async (req, res) => {
+        try {
+            const id = req.params.id
+            await questionModel.deleteOne({ jobId: id })
+            res.status(200).send({ deleteFormJobById: true })
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({ error: true })
+        }
+    },
+
+    deleteFormById: async (req, res) => {
+        try {
+            const id = req.params.id
+            await questionModel.deleteOne({ _id: id })
+            res.status(200).send({ deleteFormById: true })
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({ error: true })
+        }
+    },
+
+
+    getAllQuestions: async (req, res) => {
+        try {
+            const jobId = req.params.id
+            const questions = await questionModel.find({ jobId: jobId })
+            res.status(200).send({ success: true, questionsByJobId: questions })
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({ error: true })
+        }
+    },
+
+    addJob: async (req, res) => {
+        try {
+            const adminId = req.query.adminId
+            const jobId = req.query.jobId
+            const { isActive, lastDate } = req.body
+            const questions = await questionModel.find({ jobId: jobId })
+            const candidates = await candidateModel.find({ jobId: jobId })
+            const jobs = new jobModel({
+                job_id: jobId,
+                creationDate: new Date(),
+                isActive: isActive,
+                questionsArray: questions,
+                lastDate: new Date(lastDate),
+                totalCandidates: candidates,
+                addedBy: adminId,
+            })
+            await jobs.save()
+            res.status(200).send({ success: true })
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({ error: true })
+        }
+    },
+
+    getCandidatesByJobId: async (req, res) => {
         try {
             const id = req.params.id
             const jobById = await candidateModel.find({ jobId: id })
@@ -179,7 +217,7 @@ module.exports = {
         }
     },
 
-    getCandidatesByJobId: async (req, res) => {
+    getJobById: async (req, res) => {
         try {
             const id = req.params.id
             const jobById = await jobModel.findOne({ _id: id })

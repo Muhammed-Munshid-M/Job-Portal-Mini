@@ -5,7 +5,8 @@ module.exports = {
 
     contactInfo: async (req, res) => {
         try {
-            const { name, age, jobId, answers, shortlisted } = req.body
+            const jobId = req.params.id
+            const { name, age, answers, shortlisted } = req.body
             const candidate = new candidateModel({
                 Name: name,
                 Age: age,
