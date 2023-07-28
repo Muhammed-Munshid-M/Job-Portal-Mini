@@ -2,13 +2,20 @@ const mongoose = require("mongoose");
 const Objectid = mongoose.Types.ObjectId
 
 const jobSchema = new mongoose.Schema({
+    addedBy: {
+        type:Objectid,
+        ref:'admin'
+    },
+    job_id: {
+        type: Objectid
+    },
     creationDate: {
         type: Date
     },
     isActive: {
         type: Boolean
     },
-    questions: {
+    questionsArray: {
         type: Array
     },
     lastDate: {
@@ -16,10 +23,7 @@ const jobSchema = new mongoose.Schema({
         required: true
     },
     totalCandidates: {
-        type:Number
-    },
-    addedBy: {
-        type:Objectid
+        type:Array,
     }
 })
 

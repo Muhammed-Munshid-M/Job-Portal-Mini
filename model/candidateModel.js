@@ -14,8 +14,7 @@ const candidateSchema = new mongoose.Schema({
         required: true
     },
     jobId: {
-        type: Objectid,
-        ref:'jobs'
+        type: Objectid
     },
     answers: {
         type:Array
