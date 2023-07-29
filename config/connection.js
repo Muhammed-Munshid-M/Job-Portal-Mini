@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
 module.exports.connect = function () {
-    mongoose.connect('mongodb://0.0.0.0:27017/job-portal')
+    mongoose.connect('mongodb://mongodb+srv://munshid:munshid123@cluster0.fyiocsw.mongodb.net/job-portal')
     console.log('mongoose connected');
 }
