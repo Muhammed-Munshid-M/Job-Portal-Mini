@@ -22,5 +22,5 @@ db.connect()
 app.use('/',userRouter)
 app.use('/admin',adminRouter)
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.listen(PORT, console.log("Server started"))

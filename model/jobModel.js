@@ -27,4 +27,5 @@ const jobSchema = new mongoose.Schema({
     }
 })
 
+// eslint-disable-next-line no-undef
 module.exports = jobModel = mongoose.model('jobs',jobSchema)

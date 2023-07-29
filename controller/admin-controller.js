@@ -16,6 +16,7 @@ module.exports = {
                 if (!isMatchPswrd) {
                     res.status(200).send({ message: "Incorrect Password", noMatch: true })
                 } else {
+                    // eslint-disable-next-line no-undef
                     const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, {
                         expiresIn: '1d'
                     })

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Objectid = mongoose.Types.ObjectId
 
 const questionSchema = new mongoose.Schema({
     jobId: {
@@ -26,4 +25,5 @@ const questionSchema = new mongoose.Schema({
     }
 })
 
+// eslint-disable-next-line no-undef
 module.exports = questionModel = mongoose.model('questions', questionSchema)

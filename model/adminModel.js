@@ -15,4 +15,5 @@ const adminSchema = new mongoose.Schema({
     }
 })
 
+// eslint-disable-next-line no-undef
 module.exports = adminModel = mongoose.model('admin',adminSchema)

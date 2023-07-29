@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Objectid = mongoose.Types.ObjectId
 
 const candidateSchema = new mongoose.Schema({
     submissionDate: {
@@ -24,4 +23,5 @@ const candidateSchema = new mongoose.Schema({
     }
 })
 
+// eslint-disable-next-line no-undef
 module.exports = candidateModel = mongoose.model('candidates',candidateSchema)
